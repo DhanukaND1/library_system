@@ -14,19 +14,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     
     if($result->num_rows >0){
 
-        header('Location: Homepage.php');
+        header('Location: Homepage2.html');
         exit();
 
     }else {
         // Invalid credentials
         echo '<script>
-                window.location.href = "log.php";
                 alert("Login failed. Invalid username or password");
+                window.location.href = "log.html";
             </script>';
 
 
 
     }
   
-}
+} session_write_close();
 ?>
