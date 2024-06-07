@@ -1,0 +1,163 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body{
+  display: flex;
+  min-height: 100vh;
+  max-height: 480px;
+  background-color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  background-image: url(background4.jpg);
+  background-repeat: no-repeat;
+  background-size:cover;
+
+}
+.container{
+  margin: auto;
+}
+.container form{
+    
+    width: 350px;
+    height: 400px;
+    border-radius: 6px;
+    box-shadow:0 8px 16px rgba(0,0,0,0.3);
+    padding:30px;
+    background: rgb(211, 171, 171);
+    opacity: 87%;  
+}
+.container form h2{
+  text-align: center;
+  margin: 10px;
+  color: rgb(50, 7, 7);
+  font-size: 26px;
+}
+.container form div{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.container form div .fa-user,.fa-lock{
+  position: absolute;
+  left: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+
+}
+.container form .input-icon{
+  position: relative;
+  display: inline-block;
+}
+.container form .input-icon .inp{
+width: 150%;
+height: 35px;
+border: 1px solid silver;
+border-radius: 4px;
+padding-left: 25px;
+/* box-sizing: border-box; */
+background:#eaeaea ;
+margin-top: 15px;
+margin-bottom:10px;
+padding-left: 30px;
+padding-right: -30px;
+}
+
+.container form .input-icon .fa-lock, .fa-user {
+  color: #520101;
+  
+}
+.container form .input-icon .fa-eye, .fa-eye-slash{
+  position: absolute;
+  left: 250px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #520101;
+  cursor: pointer;
+}
+.container form .input-icon .fa-eye-slash{
+  display: none;
+}
+
+
+
+.container form .main{
+  display: inline-block;
+}
+
+.container form #btn{
+  width: 130px;
+  height: 35px;
+  border: none;
+  outline: none;
+  background-color:#520101;
+  margin-left:50% ;
+  transform: translateX(-50%);
+  margin-bottom: 20px;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 2px;
+  text-transform: uppercase;
+  color: white;
+  border-radius: 30px;
+  margin-top: 10px;
+  
+}
+.container form #btn:hover{
+  background-color: rgb(103, 13, 13);
+}
+
+.container form #check{
+  margin:20px 0;
+
+}
+.container form #fgetpass{
+  text-decoration: none;
+  margin-left:32px;
+  
+}
+.container form #sign{
+  text-decoration: none;
+  margin-left: 5px;
+}
+.container form .lbl{
+  margin: 5px;
+}
+/* 
+.inputicon{
+  position: relative;
+  display: inline-block;
+}
+.inputicon input{
+  padding-left: 25px;
+}
+.inputicon .fa-search{
+  position: absolute;
+  left: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: aqua;
+} */
+
+@media(max-width:768px){
+  .container form{
+    padding-top:30px;
+    padding-bottom: 30px;
+    
+  }
+}
+
+@media(max-width:480px){
+  body {
+        margin-left:auto ;
+      }
+}
+
+@media(max-height:480px){
+  body {
+        box-sizing: border-box;
+        margin:auto ;
+        
+      }
+}
