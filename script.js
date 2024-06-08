@@ -1,3 +1,22 @@
+// Show registration modal
+var regModal = document.getElementById("myModal");
+var regBtn = document.getElementById("showFormButton");
+var regSpan = document.getElementsByClassName("close")[0];
+
+regBtn.onclick = function() {
+    regModal.style.display = "block";
+}
+
+regSpan.onclick = function() {
+    regModal.style.display = "none";
+}
+
+window.onclick = function(event) {
+    if (event.target == regModal) {
+        regModal.style.display = "none";
+    }
+}
+
 // Show edit modal
 document.querySelectorAll('.btn-success').forEach(function(editBtn) {
     editBtn.onclick = function(event) {
@@ -16,6 +35,40 @@ document.querySelectorAll('.btn-success').forEach(function(editBtn) {
         }
     }
 });
+
+document.querySelectorAll('.eclose').forEach(function(element) {
+    element.addEventListener('click', function() {
+        // Hide the alert
+        this.parentElement.style.display = 'none';
+    });
+});
+
+ // Form validation
+ var regForm = document.getElementById('frm');
+ var editForm = document.getElementById('efrm');
+ 
+
+ function validateForm(form) {
+     var bookId = form.querySelector('input[name="book_id"]').value;
+     var regex = /^B\d{3}$/;
+     var error = document.getElementById("bookIdError");
+     error.textContent = "";
+
+     if (!regex.test(bookId)) {
+        error.textContent="Book ID must be in the format B001";
+        return false;
+     }
+     return true;
+ }
+
+ regForm.onsubmit = function() {
+     return validateForm(regForm);
+ }
+
+ editForm.onsubmit = function() {
+     return validateForm(editForm);
+ }
+;
 
 // Show delete confirmation form
 document.querySelectorAll('.delete-btn').forEach(function(deleteBtn) {
