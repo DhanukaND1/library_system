@@ -109,3 +109,30 @@ require_once ("process1.php");
                                         </div>
                                     </div>
                                     <script src="script.js"></script>
+
+                                    <a href="javascript:void(0);" class="btn btn-danger btn-xl delete-btn"
+                                        data-id="<?php echo htmlspecialchars($row['book_id']); ?>"
+                                        style="display: inline !important">Delete</a>
+
+                                </td>
+                            </tr>
+
+                        <?php }
+                    } else {
+                        echo '0 results';
+                    }
+                    ?>
+                </tbody>
+            </table>
+
+        </div>
+        <!-- Delete confirmation form -->
+        <div class="delete-confirm" id="deleteConfirm" style="display: none;">
+            <div class="delete-content">
+                <p id="deleteMessage"></p>
+                <button class="btn btn-danger confirm-delete">Yes</button>
+                <button class="btn btn-secondary cancel-delete">No</button>
+            </div>
+        </div>
+    </div>
+    </div>
