@@ -7,7 +7,7 @@ $dbname = "library_system";
 
 //create connection
 
-$conn = new mysqli($servername,$username,$password,$dbname,3307);
+$conn = new mysqli($servername,$username,$password,$dbname);
 
 //check connection
 
