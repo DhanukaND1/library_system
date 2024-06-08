@@ -1,0 +1,107 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  background-color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  max-height: 480px;
+  background-image: url(background4.jpg);
+  background-repeat: no-repeat;
+  background-size:cover;
+  
+  }
+
+
+.container {
+  margin: auto;
+}
+
+.container form {
+  width: 440px;
+  height: 550px;
+  border-radius: 6px;
+  box-shadow: 10px 8px 16px rgba(0, 0, 0, 0.3);
+  background: rgb(211, 171, 171);
+  padding-left: 70px;
+  padding-right: 70px;
+  opacity: 87%;
+}
+
+.container form h2 {
+  text-align: center;
+  padding-top: 15px;
+  color: rgb(50, 7, 7);
+  font-size: 26px;
+  padding-bottom: 8px;
+}
+.container form .errmsg{
+  font-size: 12px;
+  font-style: italic;
+  color: red;
+}
+
+.container form .input-icon {
+  position: relative;  
+}
+
+.container form .input-icon .inp {
+  width: 100%;
+  height: 35px;
+  border: 1px solid silver;
+  border-radius: 4px;
+  padding-left: 25px;
+  box-sizing: border-box;
+  background: #eaeaea;
+}
+
+.container form .input-icon .fa-lock,
+.fa-user,
+.fa-envelope,
+.fa-id-badge {
+  color: #520101;
+  position: relative; 
+  top:26px;
+  left: 5px;
+  
+}
+
+.container form .input-icon .fa-eye,
+.fa-eye-slash {
+  color: #520101;
+  cursor: pointer;
+  position: relative; 
+  float: right;
+  top: 28px;
+  right: 10px;
+}
+
+.container form .input-icon .fa-eye-slash {
+  display: none;
+}
+
+
+
+.container form .button {
+ border: none;
+ outline: none;
+ border-radius: 20px;
+ padding: 5px;
+ background-color: #520101;
+ color: white;
+ margin-top: 20px;
+ width: 110px;
+ height: 35px;
+ cursor: pointer;
+ text-transform: uppercase;
+ margin-left: 25px;
+}
+
+.container form button:hover {
+  background-color: rgb(50, 1, 1);
+  
+}
