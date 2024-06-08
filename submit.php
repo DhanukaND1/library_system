@@ -9,24 +9,33 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Validate user credentials
     
-    $sql = "SELECT * FROM user WHERE username = '$username' AND password = '$password'";
-    $result = $conn->query($sql);
+    $sql ="SELECT username, hashed_password FROM user WHERE username = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s",$username);
     
-    if($result->num_rows >0){
+    
+    if($stmt->execute()){
+        $result = mysqli_stmt_get_result($stmt);
+        $user = mysqli_fetch_assoc($result);
 
-        header('Location: Homepage2.html');
-        exit();
+        if($user){
+            if (password_verify($password, $user['hashed_password'])) {
+                $_SESSION['username'] = $username;
+                header('Location: homepage2.html');
+                exit;
+            } else {
+                echo '<script>
+                    alert("Login failed. Invalid username or password");
+                    window.location.href = "log.html";
+                 </script>';
+            }
+            }else {
+            echo '<script>
+                    alert("Login failed. Invalid username or password");
+                    window.location.href = "log.html";
+                 </script>';
 
-    }else {
-        // Invalid credentials
-        echo '<script>
-                alert("Login failed. Invalid username or password");
-                window.location.href = "log.html";
-            </script>';
-
-
-
+            }
+        }
     }
-  
-} session_write_close();
 ?>
