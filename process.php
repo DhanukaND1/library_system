@@ -69,3 +69,36 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 }
+
+if (isset($_GET['delete'])) {
+    $book_id = $_GET['delete'];
+    $pdo->beginTransaction();
+
+    try {
+        // Delete related records in fine table
+        $stmt = $pdo->prepare("DELETE FROM fine WHERE book_id = :book_id");
+        $stmt->bindParam(':book_id', $book_id);
+        $stmt->execute();
+
+        // Delete related records in bookborrower table
+        $stmt = $pdo->prepare("DELETE FROM bookborrower WHERE book_id = :book_id");
+        $stmt->bindParam(':book_id', $book_id);
+        $stmt->execute();
+
+        // Delete book
+        $stmt = $pdo->prepare("DELETE FROM book WHERE book_id = :book_id");
+        $stmt->bindParam(':book_id', $book_id);
+        $stmt->execute();
+        $pdo->commit();
+
+        $_SESSION['message'] = 'Book delete successful';
+        $_SESSION['msg_type'] = 'danger';
+
+        header('Location: assignment1.php');
+    } catch (Exception $e) {
+        $pdo->rollBack();
+        throw $e;
+    }
+}
+
+?>
