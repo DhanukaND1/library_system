@@ -177,4 +177,6 @@ require_once ("process1.php");
         <script src="script.js"></script>
     </div>
 
-     
+</body>
+
+</html>
