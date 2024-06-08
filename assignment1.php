@@ -70,3 +70,42 @@ require_once ("process1.php");
                                 <td><?php echo $row['book_id']; ?></td>
                                 <td><?php echo $row['book_name']; ?></td>
                                 <td><?php echo $row['category_Name']; ?></td>
+                                <td>
+                                    <a href="javascript:void[0]; " class="btn btn-success" id="showeditform">Edit</button></a>
+                                    <div class="edit" id="bookEdit" <?php echo htmlspecialchars($row['book_id']); ?>>
+                                        <div class="edit-content">
+                                            <h4>Edit Book</h4><br>
+                                            <span class="eclose">&times;</span>
+                                            <form action="process1.php" method="post" id="efrm">
+                                                <input type="hidden" name="action" value="update">
+                                                <input type="hidden" name="book_id"
+                                                    value="<?php echo htmlspecialchars($row['book_id']); ?>">
+                                                <label for="book_id">Book Id</label>
+                                                <input id="bid" name="book_id" type="text"
+                                                    value="<?php echo htmlspecialchars($row['book_id']); ?>" required><br>
+
+                                                <label for="book_name">Book Name</label>
+                                                <input id="bname" name="book_name" type="text"
+                                                    value="<?php echo htmlspecialchars($row['book_name']); ?>" required><br>
+
+                                                <label for="book_category">Book Category</label>
+                                                <select name="book_category" id="book_category" required>
+                                                    <option value="">Select a category</option>
+                                                    <?php
+                                                    $category_sql = "SELECT category_Name FROM bookcategory";
+                                                    $category_result = $pdo->query($category_sql);
+                                                    while ($category_row = $category_result->fetch(PDO::FETCH_ASSOC)) {
+                                                        echo "<option value='" . htmlspecialchars($category_row["category_Name"]) . "'";
+                                                        if ($category_row["category_Name"] == $row['category_Name']) {
+                                                            echo "selected";
+                                                        }
+                                                        echo ">" . htmlspecialchars($category_row["category_Name"]) . "</option>";
+                                                    }
+                                                    ?>
+                                                </select><br><br>
+
+                                                <button type="submit" name="submit" class="btn btn-success">Submit</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <script src="script.js"></script>
