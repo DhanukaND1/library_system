@@ -136,3 +136,45 @@ require_once ("process1.php");
         </div>
     </div>
     </div>
+
+    <!-- Book registration form -->
+    <div class="container">
+        <button id="showFormButton" class="btn btn-primary mt-3">
+            Register Book
+        </button>
+
+        <div class="name" id="myModal">
+            <div class="name-content">
+                <span class="close">&times;</span>
+
+                <form action="process1.php" method="post" id="frm">
+                    <h4>Book Registration</h4><br>
+                    <input type="hidden" name="action" value="insert">
+
+                    <label for="book_id">Book Id</label>
+                    <input id="bid" name="book_id" type="text" placeholder="B001" required><br>
+
+                    <label for="book_name">Book Name</label>
+                    <input id="bname" name="book_name" type="text" placeholder="Enter book name" required><br>
+
+                    <label for="book_category">Book Category</label>
+                    <select name="book_category" id="book_category" required>
+                        <option value="">Select a category</option>
+                        <?php
+                        $category_sql = "SELECT category_Name FROM bookcategory";
+                        $category_result = $pdo->query($category_sql);
+                        while ($category_row = $category_result->fetch(PDO::FETCH_ASSOC)) {
+                            echo "<option value='" . htmlspecialchars($category_row["category_Name"]) . "'>" . htmlspecialchars($category_row["category_Name"]) . "</option>";
+                        }
+                        ?>
+                    </select><br><br>
+
+                    <button type="submit" name="submit" class="btn btn-success">Submit</button>
+                </form>
+            </div>
+        </div>
+
+        <script src="script.js"></script>
+    </div>
+
+     
