@@ -32,3 +32,95 @@ require_once ("book_category_process.php");
 </head>
 
 <body>
+<!-- Book category Table -->
+    <div class="container">
+        <h1>Book Category</h1>
+        <?php if (isset($_SESSION["message"])): ?>
+            <div style="dispaly:flex; top:30px;" class="alert alert-<?= $_SESSION['msg_type'] ?> fade show" role="alert">
+            <?php
+            echo $_SESSION['message'];
+            unset($_SESSION['message']);
+            unset($_SESSION['msg_type']);
+            ?>
+            <span class="eclose" s>&times;</span>
+            
+        </div>
+        <?php endif; ?>
+        <div class="Bookcategorytable">
+            <table class="table table-hover dt-responsive" style="width:100%; dispaly:flex; top:80px;">
+                <thead>
+                    <tr>
+                        <th>Category ID</th>
+                        <th>Category Name</th>
+                        <th>Date Modified</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <?php 
+                        $sql = "SELECT * FROM bookcategory";
+                        $result = $pdo->query($sql);
+
+                    if ($result->rowCount() > 0) {
+                        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                            ?>
+                            <tr>
+                                <td><?php echo $row['category_id']; ?></td>
+                                <td><?php echo $row['category_Name']; ?></td>
+                                <td><?php echo $row['date_modified']; ?></td>
+                                
+                                <td>
+                                    <a href="javascript:void[0]; " class="btn btn-success"
+                                            id="showeditform">Edit</button></a>
+                                    <div class="edit" id="categoryEdit" <?php echo htmlspecialchars($row['category_id']); ?>>
+
+                                        <div class="edit-content">
+
+                                            <h4>Edit Book Category</h4><br>
+
+                                            <span class="eclose">&times;</span>
+
+                                            <form action="book_category_process.php" method="post" id="efrm" class="efrm">
+                                                <input type="hidden" name="action" value="update">
+                                                <input type="hidden" name="category_id" value="<?php echo htmlspecialchars($row['category_id']); ?>">
+                                                <label for="category_id">Category Id</label><br>
+                                                <input id="bid" name="category_id" type="text" value="<?php echo htmlspecialchars($row['category_id']); ?>" required autofa><br><br>
+
+                                                <label for="category_Name">Category Name</label><br>
+                                                <input id="cname" name="category_Name" type="text" value="<?php echo htmlspecialchars($row['category_Name']); ?>" required autofa><br><br>
+
+                                                <label for="date_modified">Date modified</label><br>
+                                                <input id="date" name="date_modified" type="date" value="<?php echo htmlspecialchars($row['date_modified']); ?>" required autofa><br><br>
+
+                                                </select>
+
+                                                <button type="submit" name="submit" class="btn btn-success">Submit</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <script src="book_category.js"></script>
+
+                                    <a href="javascript:void(0);" class="btn btn-danger btn-xl delete-btn"
+                                        data-id="<?php echo htmlspecialchars($row['category_id']); ?>"
+                                        style="display: inline !important">Delete</a>
+                                </td>
+                            </tr>
+
+                        <?php }
+                    } else {
+                        echo '0 results';
+                    }
+                    ?>
+                </tbody>
+            </table>
+        </div>
+        <!-- Delete confirmation form -->
+        <div class="delete-confirm" id="deleteConfirm" style="display: none;">
+            <div class="delete-content">
+                <p id="deleteMessage"></p>
+                <button class="btn btn-danger confirm-delete">Yes</button>
+                <button class="btn btn-secondary cancel-delete">No</button>
+            </div>
+        </div>
+    </div>
