@@ -124,3 +124,40 @@ require_once ("book_category_process.php");
             </div>
         </div>
     </div>
+
+    <!-- Book category registration form -->
+    <div class="container">
+        <button id="showFormButton" class="btn btn-primary mt-3">
+            Book Category 
+        </button>
+
+        <div class="name" id="myModal">
+            <div class="name-content">
+                <span class="close">&times;</span>
+
+                <form action="book_category_process.php" method="post" id="frm" class="frm">
+                    <input type="hidden" name="action" value="insert">
+
+                    <h4>Add Book Category</h4><br>
+
+                    <label for="category_id">Category Id</label><br>
+                    <input id="cid" name="category_id" type="text" placeholder="C001" required autofocus><br><br>
+
+                    <label for="category_name">Category Name</label><br>
+                    <input id="cname" name="category_Name" type="text" placeholder="Enter category name" required autofocus><br><br>
+
+                    <label for="date_modified">Date</label><br>
+                    <input id="cid" name="date_modified" type="date" placeholder="today" required autofocus><br><br>
+
+                    </select>
+
+                    <button type="submit" name="submit" class="btn btn-success">Submit</button>
+                </form>
+            </div>
+        </div>
+        <script src="book_category.js"></script>
+    </div>
+
+</body>
+
+</html>
